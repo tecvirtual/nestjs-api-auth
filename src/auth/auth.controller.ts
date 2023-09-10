@@ -3,7 +3,6 @@ import {
   Controller,
   Post,
   Get,
-  Request,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
@@ -12,13 +11,11 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { Role } from '../common/enums/role.enum';
 import { Auth } from './decorators/auth.decorators';
-import { ActiveUser } from 'src/common/decorators/active-user.decorator';
-import { UserActiveInterface } from 'src/common/interfaces/user-active.interface';
+import { ActiveUser } from '../common/decorators/active-user.decorator';
+import { UserActiveInterface } from '../common/interfaces/user-active.interface';
+import { ApiTags } from '@nestjs/swagger';
 
-interface RequestWithUser extends Request {
-  user: { email: string; role: string };
-}
-
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -39,13 +36,5 @@ export class AuthController {
   profile(@ActiveUser() user: UserActiveInterface) {
     return user;
   }
-
-  @Get('profile2')
-  @Auth(Role.ADMIN)
-  profile2(
-    @Request()
-    req: RequestWithUser,
-  ) {
-    return req.user;
-  }
+  
 }
