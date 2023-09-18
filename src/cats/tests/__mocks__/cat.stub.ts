@@ -8,7 +8,7 @@ export const catStub = (): Cat => {
     const breed: Breed = breedStub();
     const user: User = userStub();
     return {
-        name: 'Product name',
+        name: 'Cat name',
         age: 10,
         deletedAt: null,
         userEmail: 'admin@gmail.com',
