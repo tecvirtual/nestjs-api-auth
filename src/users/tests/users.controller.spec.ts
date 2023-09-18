@@ -4,17 +4,18 @@ import { UsersService } from '../users.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { mockUsersService } from './__mocks__/users.service';
 
 describe('UsersController', () => {
   let controller: UsersController;
 
-  const mockUsersService = {
+  /*const mockUsersService = {
     create: jest.fn(),
     findAll: jest.fn(),
     findOne: jest.fn(),
     update: jest.fn(),
     remove: jest.fn(),
-  };
+  };*/
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
